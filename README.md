@@ -1,4 +1,4 @@
 # pecunia_cryptocurrency
-https://github.com/Alfrick/Create-Cryptocurrency-in-Python
-https://stackoverflow.com/questions/8609153/why-do-we-use-init-in-python-classes/8609238
-https://stackoverflow.com/questions/7321694/sha-256-implementation-in-python
+A simple, insecure implementation of a blockchain for a cryptocurrency made in Python. We aim to make a blockchain currency.
+
+This code is based off the following python library: https://github.com/Alfrick/Create-Cryptocurrency-in-Python
