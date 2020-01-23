@@ -1,9 +1,13 @@
 import hashlib
 import time
 
-sender="0"
-recipient_name="swally"
-quantity_to_send="1000"
+sender1="1"
+recipient_name1="swally"
+quantity_to_send1="1000"
+
+sender2="2"
+recipient_name2="patchito"
+quantity_to_send2="2000"
 
 class Block:
 
@@ -135,23 +139,35 @@ class BlockChain:
             timestamp=block_data['timestamp'])
 
 
+def users(sender, recipient_name, quantity_to_send):
+    last_block = blockchain.latest_block
+    last_proof_no = last_block.proof_no
+    proof_no = blockchain.proof_of_work(last_proof_no)
+
+    blockchain.new_data(
+        sender=sender,  #it implies that this node has created a new block
+        recipient=recipient_name,  #let's send Quincy some coins!
+        quantity=quantity_to_send,  #creating a new block (or identifying the proof number) is awarded with 1
+    )
+
+    last_hash = last_block.calculate_hash
+    block = blockchain.construct_block(proof_no, last_hash)
+
+    return last_hash
+
+
 blockchain = BlockChain()
 
 print("***Mining Pecunia about to start***")
 print(blockchain.chain)
 
-last_block = blockchain.latest_block
-last_proof_no = last_block.proof_no
-proof_no = blockchain.proof_of_work(last_proof_no)
+users(1, 'swally', 1000)
 
-blockchain.new_data(
-    sender=sender,  #it implies that this node has created a new block
-    recipient=recipient_name,  #let's send Quincy some coins!
-    quantity=quantity_to_send,  #creating a new block (or identifying the proof number) is awarded with 1
-)
+users(2, 'patchito', 2000)
 
-last_hash = last_block.calculate_hash
-block = blockchain.construct_block(proof_no, last_hash)
+users(3, 'miyazzle', 3000)
 
 print("***Mining Pecunia has been successful***")
 print(blockchain.chain)
+
+whole_chain=[]
