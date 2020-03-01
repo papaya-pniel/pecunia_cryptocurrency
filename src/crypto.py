@@ -1,6 +1,8 @@
 import hashlib
 import time
 
+from google.cloud import storage
+
 sender1="1"
 recipient_name1="swally"
 quantity_to_send1="1000"
@@ -155,19 +157,38 @@ def users(sender, recipient_name, quantity_to_send):
 
     return last_hash
 
+# store ledger in gcp
 
-blockchain = BlockChain()
+def upload_blob(bucket_name, source_file_name, destination_blob_name):
+    """Uploads a file to the bucket."""
+    
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(destination_blob_name)
 
-print("***Mining Pecunia about to start***")
-print(blockchain.chain)
+    blob.upload_from_filename(source_file_name)
 
-users(1, 'swally', 1000)
+    print(
+        "File {} uploaded to {}.".format(
+            source_file_name, destination_blob_name
+        )
+    )
 
-users(2, 'patchito', 2000)
+upload_blob("coin-ledger", "ledger.json", "ledger.json")
 
-users(3, 'miyazzle', 3000)
 
-print("***Mining Pecunia has been successful***")
-print(blockchain.chain)
-
-whole_chain=[]
+# blockchain = BlockChain()
+#
+# print("***Mining Pecunia about to start***")
+# print(blockchain.chain)
+#
+# users(1, 'swally', 1000)
+#
+# users(2, 'patchito', 2000)
+#
+# users(3, 'miyazzle', 3000)
+#
+# print("***Mining Pecunia has been successful***")
+# print(blockchain.chain)
+#
+# whole_chain=[]
