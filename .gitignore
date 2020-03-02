@@ -1,6 +1,0 @@
-rubbish.py
-infra/.terraform
-infra/cryptocurrency-sa.json
-infra/terraform.tfstate
-infra/terraform.tfstate.backup
-.gitignore
